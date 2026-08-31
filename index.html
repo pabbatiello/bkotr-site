@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blue Kid On The Rock — BKOTR</title>
+<meta name="description" content="BKOTR — dream-pop & electronica from Benevento, Italy. The way the ocean waves." />
+<meta name="theme-color" content="#7f421d" />
+<meta property="og:type" content="music.musician" />
+<meta property="og:title" content="Blue Kid On The Rock — BKOTR" />
+<meta property="og:description" content="The way the ocean waves. Dream-pop & electronica from Benevento, Italy." />
+<meta property="og:url" content="https://bkotr.com" />
+<meta property="og:image" content="https://bkotr.com/hero.jpg" />
+<meta property="og:site_name" content="BKOTR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Blue Kid On The Rock — BKOTR" />
+<meta name="twitter:description" content="The way the ocean waves. Dream-pop &amp; electronica from Benevento, Italy." />
+<meta name="twitter:image" content="https://bkotr.com/hero.jpg" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%234a2b18'/%3E%3Cpath d='M2 16q6-7 12 0t12 0' stroke='%23ffd28a' stroke-width='2.4' fill='none'/%3E%3Cpath d='M2 23q6-5 12 0t12 0' stroke='%23ffd28a' stroke-width='1.6' fill='none' opacity='.5'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@300;400;500&family=Schibsted+Grotesk:ital,wght@0,400;0,500;1,400&display=swap" />
+<style>
+:root{
+  --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ember-hi:#4a2b18;
+  --ember-mid:#8e4a20;
+  --ember-lo:#c8752f;
+  --petrol:#285a7d;
+  --cream:#fff2dc;
+  --cream-2:#f4dcb6;
+  --cream-3:#dbb684;
+  --hot:#ffe6b4;
+  --rule:rgba(255,242,220,.22);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  color:var(--cream);
+  font-family:"Schibsted Grotesk",system-ui,-apple-system,sans-serif;
+  font-weight:400;font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  /* one warm field, top to bottom — the page has no dark end */
+  background:var(--ember-mid);
+}
+::selection{background:var(--hot);color:var(--ember-hi)}
+a{color:inherit}
+
+.field{
+  position:fixed;inset:0;z-index:-3;
+  background:linear-gradient(178deg,
+    #33212c 0%, #48291f 9%, #60321c 20%, #7f421d 32%, #a15420 42%,
+    #c06e29 49%, #cf8036 53%,                      /* the glow, at the waterline */
+    #b06b3c 60%, #8f5850 68%, #6b4a5e 76%,         /* the turn, through rose to violet */
+    #45506c 85%, #315572 93%, #285a7d 100%);       /* petrol — deep water, still lit */
+}
+#lines{position:fixed;inset:0;z-index:-2;width:100%;height:100%;display:block}
+.tooth{
+  position:fixed;inset:-50%;z-index:80;pointer-events:none;opacity:.075;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:tooth 1s steps(4) infinite;
+}
+@keyframes tooth{0%{transform:translate(0,0)}25%{transform:translate(-2%,1%)}50%{transform:translate(1%,-2%)}75%{transform:translate(-1%,-1%)}100%{transform:translate(0,0)}}
+
+.wrap{width:min(92vw,1080px);margin:0 auto;position:relative;z-index:1}
+
+/* ── hero ───────────────────────────────────────────────────────────────── */
+.hero{min-height:100svh;display:grid;align-content:center;gap:clamp(16px,3vh,30px)}
+h1{
+  font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;
+  font-size:clamp(3.6rem,17vw,12.5rem);line-height:.82;letter-spacing:-.035em;
+  color:var(--cream);text-shadow:0 6px 60px rgba(50,22,8,.5);
+}
+.motto{
+  font-family:var(--mono);
+
+  font-size:clamp(.85rem,2.4vw,1.15rem);font-weight:400;letter-spacing:.24em;
+  color:var(--hot);text-shadow:0 2px 20px rgba(58,26,8,.75),0 1px 3px rgba(58,26,8,.5);
+}
+.facts{
+  font-family:var(--mono);
+
+  display:flex;gap:clamp(14px,3vw,38px);flex-wrap:wrap;
+  font-size:.68rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-2);
+  text-shadow:0 2px 18px rgba(58,26,8,.8),0 1px 3px rgba(58,26,8,.55);
+}
+.facts span{display:flex;align-items:center;gap:10px}
+.facts span::before{content:"";width:5px;height:5px;background:var(--hot);border-radius:50%}
+
+/* ── sections ───────────────────────────────────────────────────────────── */
+main{padding-bottom:clamp(70px,12vh,140px)}
+section{padding-top:clamp(56px,10vh,120px)}
+.head{
+  font-family:var(--mono);
+
+  display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(20px,4vh,36px);
+  font-size:.66rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--cream-3);
+}
+.head::after{content:"";flex:1;height:1px;background:var(--rule)}
+.head b{font-weight:500;color:var(--hot)}
+
+.player{border:1px solid var(--rule);background:rgba(46,24,12,.55);backdrop-filter:blur(8px);box-shadow:0 30px 80px -34px rgba(40,16,4,.9)}
+.player iframe{display:block;width:100%;border:0}
+
+.index{border-top:1px solid var(--rule)}
+.row{
+  display:grid;grid-template-columns:3.4rem 1fr auto;align-items:center;gap:16px;
+  padding:clamp(13px,2vh,19px) 2px;border-bottom:1px solid var(--rule);
+  text-decoration:none;position:relative;transition:padding-left .35s var(--ease);
+}
+.row .yr{font-family:var(--mono);font-size:.7rem;font-weight:400;color:var(--cream-3);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.row .ttl{
+  font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:500;
+  font-size:clamp(1.1rem,3vw,1.7rem);line-height:1.15;letter-spacing:-.015em;color:var(--cream);text-wrap:balance;
+}
+.row .m{font-family:var(--mono);font-size:.63rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-3);white-space:nowrap}
+a.row::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--hot);transition:width .45s var(--ease)}
+a.row:hover::before,a.row:focus-visible::before{width:100%}
+a.row:hover,a.row:focus-visible{padding-left:12px}
+a.row:hover .ttl,a.row:hover .m{color:var(--hot)}
+a.row:focus-visible{outline:1px solid var(--hot);outline-offset:5px}
+@media(max-width:520px){.row{grid-template-columns:2.8rem 1fr}.row .m{grid-column:2;white-space:normal}}
+
+.join{max-width:38rem}
+.join h2{
+  font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;
+  font-size:clamp(1.7rem,5vw,2.9rem);line-height:1.05;letter-spacing:-.03em;text-wrap:balance;
+}
+.join p{margin-top:14px;color:var(--cream-2);max-width:46ch;font-size:1.02rem;line-height:1.6}
+form{display:flex;align-items:flex-end;gap:14px;margin-top:28px;flex-wrap:wrap}
+input[type=email]{
+  flex:1 1 230px;min-width:0;background:transparent;border:0;border-bottom:1px solid var(--rule);
+  color:var(--cream);font-family:var(--mono);font-weight:300;font-size:1rem;padding:10px 2px;
+}
+input[type=email]::placeholder{color:var(--cream-3);font-family:var(--mono)}
+input[type=email]:focus{outline:none;border-bottom-color:var(--hot)}
+button{
+  background:var(--hot);color:#3a2010;border:0;cursor:pointer;padding:14px 28px;
+  font-family:var(--mono);font-weight:500;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+  transition:filter .3s var(--ease);
+}
+button:hover{filter:brightness(1.08)}
+button:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.status{
+  font-family:var(--mono);margin-top:14px;font-size:.8rem;letter-spacing:.04em;
+  color:var(--hot);max-width:40rem;min-height:1.2em;
+}
+.status.bad{color:#ffc9a8}
+.fine{font-family:var(--mono);margin-top:15px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-2)}
+.todo{font-family:var(--mono);margin-top:16px;font-size:.72rem;color:var(--hot);border-left:1px solid rgba(255,230,180,.5);padding-left:12px;max-width:34rem}
+
+footer{
+  margin-top:clamp(60px,10vh,120px);padding-top:26px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--cream-2);
+}
+footer .sig{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-style:italic;font-size:.95rem;color:var(--cream-2);text-transform:none;letter-spacing:0}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tooth{animation:none}}
+</style>
+</head>
+<body>
+<div class="field" aria-hidden="true"></div>
+<canvas id="lines" aria-hidden="true"></canvas>
+<div class="tooth" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="hero">
+    <h1>BKOTR</h1>
+    <p class="motto">the way the ocean waves</p>
+    <div class="facts"><span>Dream-pop &amp; electronica</span><span>Benevento, Italy</span><span>Since 2016</span></div>
+  </header>
+
+  <main>
+    <section id="listen">
+      <div class="head">Listen <b>/ 01</b></div>
+      <div class="player">
+        <iframe title="Blue Kid On The Rock on Spotify"
+          src="https://open.spotify.com/embed/artist/7uxOgQXena0uQ6iHwVPqrC?utm_source=generator&amp;theme=0"
+          width="100%" height="352" frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <section id="releases">
+      <div class="head">Releases <b>/ 02</b></div>
+      <div class="index">
+        <div class="row"><span class="yr">2024</span><span class="ttl">Silver Line</span><span class="m">Single</span></div>
+        <div class="row"><span class="yr">2023</span><span class="ttl">Quantum Leap</span><span class="m">EP · 4 tracks</span></div>
+        <div class="row"><span class="yr">2022</span><span class="ttl">Shadow &amp; Soul</span><span class="m">Single</span></div>
+        <div class="row"><span class="yr">2022</span><span class="ttl">42</span><span class="m">EP · 5 tracks</span></div>
+        <div class="row"><span class="yr">2022</span><span class="ttl">Telemachus</span><span class="m">Single</span></div>
+        <div class="row"><span class="yr">2021</span><span class="ttl">Babylon</span><span class="m">Single</span></div>
+        <div class="row"><span class="yr">2021</span><span class="ttl">Funeral Singers</span><span class="m">Single</span></div>
+        <div class="row"><span class="yr">2019</span><span class="ttl">Summer Platitudes</span><span class="m">Single</span></div>
+        <div class="row"><span class="yr">2018</span><span class="ttl">The Way The Ocean Waves</span><span class="m">EP · 3 tracks</span></div>
+      </div>
+    </section>
+
+    <section id="everywhere">
+      <div class="head">Everywhere <b>/ 03</b></div>
+      <div class="index">
+        <a class="row" href="https://open.spotify.com/artist/7uxOgQXena0uQ6iHwVPqrC" target="_blank" rel="noopener"><span class="yr">01</span><span class="ttl">Spotify</span><span class="m">Full catalogue ↗</span></a>
+        <a class="row" href="https://bluekidontherock.bandcamp.com" target="_blank" rel="noopener"><span class="yr">02</span><span class="ttl">Bandcamp</span><span class="m">Buy the music ↗</span></a>
+        <a class="row" href="https://music.apple.com/us/artist/blue-kid-on-the-rock/1342389577" target="_blank" rel="noopener"><span class="yr">03</span><span class="ttl">Apple Music</span><span class="m">Full catalogue ↗</span></a>
+        <a class="row" href="https://www.youtube.com/@BlueKidOnTheRock" target="_blank" rel="noopener"><span class="yr">04</span><span class="ttl">YouTube</span><span class="m">Videos ↗</span></a>
+        <a class="row" href="https://www.instagram.com/bluekidontherock/" target="_blank" rel="noopener"><span class="yr">05</span><span class="ttl">Instagram</span><span class="m">@bluekidontherock ↗</span></a>
+        <a class="row" href="https://www.tiktok.com/@bkotr" target="_blank" rel="noopener"><span class="yr">06</span><span class="ttl">TikTok</span><span class="m">@bkotr ↗</span></a>
+        <a class="row" href="https://www.facebook.com/bluekidontherock/" target="_blank" rel="noopener"><span class="yr">07</span><span class="ttl">Facebook</span><span class="m">@bluekidontherock ↗</span></a>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="head">Keep in touch <b>/ 04</b></div>
+      <div class="join">
+        <h2>Hear the next one first.</h2>
+        <p>New releases and the occasional word from the studio. No noise — just the music.</p>
+        <form id="subscribe" novalidate>
+          <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address" />
+          <!-- honeypot: real people never fill this in -->
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button type="submit">Join</button>
+        </form>
+        <p class="fine" id="finenote">One email when there's new music. Nothing else.</p>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+        <p class="todo" id="setup">Setup — paste your Web3Forms access key into <code>ACCESS_KEY</code> in the script below, then delete this line.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span class="sig">Composing what I can, with what I have, where I am.</span>
+      <span>© <span id="yr"></span> BLUE KID ON THE ROCK · BKOTR.COM</span>
+    </footer>
+  </main>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── one line that is both a horizon and a waveform ─────────────────────── */
+(function(){
+  var cv = document.getElementById('lines'), ctx = cv.getContext('2d');
+  if(!ctx){ cv.style.display='none'; return; }
+  var dpr = Math.min(devicePixelRatio||1, 2), W=0, H=0;
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function size(){
+    W = innerWidth; H = innerHeight;
+    cv.width = Math.floor(W*dpr); cv.height = Math.floor(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  addEventListener('resize',size,{passive:true}); size();
+
+  // each line: y position, amplitude, wavelengths, speed, weight, alpha
+  var LINES = [
+    {y:.400,a: .48, w:[.0030,.0078,.0160], s:.30, lw:1.0, al:.20, hot:.20},
+    {y:.437,a: .58, w:[.0027,.0072,.0150], s:.34, lw:1.1, al:.27, hot:.28},
+    {y:.470,a: .70, w:[.0024,.0066,.0141], s:.38, lw:1.3, al:.36, hot:.38},
+    {y:.505,a:1.00, w:[.0022,.0061,.0134], s:.42, lw:2.6, al:.95, hot:1.00},
+    {y:.542,a: .84, w:[.0026,.0070,.0158], s:.36, lw:1.5, al:.54, hot:.54},
+    {y:.585,a: .72, w:[.0031,.0079,.0171], s:.31, lw:1.6, al:.44, hot:.42},
+    {y:.638,a: .60, w:[.0038,.0090,.0186], s:.27, lw:1.3, al:.34, hot:.31, cool:.30},
+    {y:.700,a: .50, w:[.0044,.0102,.0205], s:.23, lw:1.2, al:.26, hot:.23, cool:.55},
+    {y:.775,a: .40, w:[.0053,.0120,.0232], s:.18, lw:1.1, al:.19, hot:.16, cool:.78},
+    {y:.860,a: .32, w:[.0062,.0138,.0262], s:.14, lw:1.0, al:.13, hot:.11, cool:.92}
+  ];
+
+  // the sun belongs to the name: it sits behind the wordmark and sets into
+  // the horizon line as the page scrolls away from the hero.
+  var h1 = document.querySelector('h1'), hx = 0, hy = 0;
+  function anchor(){ hx = h1.offsetLeft + h1.offsetWidth*0.70; hy = h1.offsetTop + h1.offsetHeight*0.52; }
+  addEventListener('resize',anchor,{passive:true});
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(anchor);
+  anchor();
+
+  // a line's colour drifts from sunlit cream toward cold spray as it nears
+  // the viewer, so the lower lines read as water rather than as more sky.
+  function ink(rgb, a, cool){
+    cool = cool || 0;
+    return 'rgba(' + Math.round(rgb[0]+(206-rgb[0])*cool) + ','
+                   + Math.round(rgb[1]+(238-rgb[1])*cool) + ','
+                   + Math.round(rgb[2]+(250-rgb[2])*cool) + ',' + a + ')';
+  }
+
+  var sunX = .60, t0 = performance.now(), off = 0, offT = 0;
+  addEventListener('scroll',function(){ offT = Math.min(scrollY/Math.max(innerHeight,1),1.6); },{passive:true});
+
+  function draw(now){
+    requestAnimationFrame(draw);
+    if(document.hidden) return;
+    var t = still ? 8 : (now-t0)/1000;
+    off += (offT-off)*.07;
+    ctx.clearRect(0,0,W,H);
+    ctx.lineCap='round';
+    for(var i=0;i<LINES.length;i++){
+      var L = LINES[i];
+      // scroll drifts the whole set upward, so the horizon keeps moving
+      var base = H*(L.y - off*0.10);
+      var amp  = H*0.046*L.a;
+      ctx.beginPath();
+      for(var x=0;x<=W;x+=3){
+        var y = base
+          + Math.sin(x*L.w[0] + t*L.s*1.7 + i)*amp
+          + Math.sin(x*L.w[1] - t*L.s*2.6 + i*2.1)*amp*0.45
+          + Math.sin(x*L.w[2] + t*L.s*3.9 + i*3.3)*amp*0.20;
+        if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      }
+      var g = ctx.createLinearGradient(0,0,W,0);
+      g.addColorStop(0,               ink([255,226,178], L.al*0.16, L.cool));
+      g.addColorStop(Math.max(sunX-.30,.01), ink([255,232,190], L.al*0.50, L.cool));
+      g.addColorStop(sunX,            ink([255,250,232], L.al,      L.cool));
+      g.addColorStop(Math.min(sunX+.30,.99), ink([255,232,190], L.al*0.50, L.cool));
+      g.addColorStop(1,               ink([255,226,178], L.al*0.16, L.cool));
+      ctx.strokeStyle = g;
+      ctx.lineWidth = L.lw;
+      ctx.shadowBlur = 26*L.hot;
+      ctx.shadowColor = ink([255,224,166], 0.55*L.hot, L.cool);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+    // the sun: anchored to the wordmark, setting into the horizon on scroll
+    var k = Math.min(off,1);
+    var restY = H*(LINES[3].y - off*0.10);
+    var bx = (hx/W)*(1-k) + sunX*k;
+    var by = (hy - scrollY)*(1-k) + restY*k;
+    var i  = 1 - 0.58*k;
+    var m = Math.max(W,H);
+    // wide soft halo
+    var rg = ctx.createRadialGradient(W*bx,by,0,W*bx,by,m*(0.56+0.16*k));
+    rg.addColorStop(0,   'rgba(255,244,210,'+(0.26*i)+')');
+    rg.addColorStop(.12, 'rgba(255,232,182,'+(0.19*i)+')');
+    rg.addColorStop(.34, 'rgba(255,212,140,'+(0.09*i)+')');
+    rg.addColorStop(1,   'rgba(255,196,110,0)');
+    ctx.fillStyle = rg; ctx.fillRect(0,0,W,H);
+    // the core itself — tight and hot
+    var cg = ctx.createRadialGradient(W*bx,by,0,W*bx,by,m*(0.115+0.03*k));
+    cg.addColorStop(0,  'rgba(255,252,240,'+(0.62*i)+')');
+    cg.addColorStop(.34,'rgba(255,242,206,'+(0.34*i)+')');
+    cg.addColorStop(.70,'rgba(255,226,164,'+(0.13*i)+')');
+    cg.addColorStop(1,  'rgba(255,214,140,0)');
+    ctx.fillStyle = cg; ctx.fillRect(0,0,W,H);
+  }
+  requestAnimationFrame(draw);
+})();
+
+/* ── sign-up: posts straight to Web3Forms, which emails it to you ────────
+   No database, no dashboard, nothing to maintain. Get a key (free, no
+   account) at https://web3forms.com — it arrives by email. Paste it below
+   and delete the orange setup note in the markup.                        */
+(function(){
+  var ACCESS_KEY = 'PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE';
+
+  var form = document.getElementById('subscribe'),
+      status = document.getElementById('status'),
+      fine = document.getElementById('finenote'),
+      setup = document.getElementById('setup'),
+      btn = form.querySelector('button');
+
+  var ready = ACCESS_KEY.indexOf('PASTE_') !== 0;
+  if(ready && setup) setup.remove();
+
+  function say(msg, bad){
+    status.textContent = msg;
+    status.classList.toggle('bad', !!bad);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(form.querySelector('[name=botcheck]').checked) return;
+
+    var email = form.email.value.trim();
+    if(!email || email.indexOf('@') < 1 || email.indexOf('.') < 0){
+      say('That address does not look right — check it and try again.', true);
+      form.email.focus();
+      return;
+    }
+    if(!ready){
+      say('Not connected yet — the access key is still a placeholder.', true);
+      return;
+    }
+
+    var was = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending';
+    say('');
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+      body: JSON.stringify({
+        access_key: ACCESS_KEY,
+        email: email,
+        subject: 'New signup on bkotr.com',
+        from_name: 'bkotr.com'
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.success){
+        form.remove();
+        if(fine) fine.remove();
+        say('You are on the list. Talk soon.');
+      } else {
+        throw new Error((d && d.message) || 'rejected');
+      }
+    })
+    .catch(function(){
+      btn.disabled = false; btn.textContent = was;
+      say('That did not go through. Try again, or email hello@bkotr.com.', true);
+    });
+  });
+})();
+</script>
+</body>
+</html>
