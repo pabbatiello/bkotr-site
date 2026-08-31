@@ -60,6 +60,24 @@
 {"@context":"https://schema.org","@type":"WebSite","url":"https://bkotr.com/","name":"Blue Kid On The Rock","publisher":{"@id":"https://bkotr.com/#artist"}}
 </script>
 
+<!-- Google Analytics 4 — configured COOKIELESS (client_storage:'none').
+     No cookies are written, so the site needs no consent banner. Trade-off:
+     every visit counts as a new user, so "returning visitors" is not measured.
+     Remove client_storage to get returning-user data, but then a GDPR consent
+     banner becomes necessary for the UK/IE/IT audience. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GG42FB02BE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GG42FB02BE', {
+    client_storage: 'none',
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@300;400;500&family=Schibsted+Grotesk:ital,wght@0,400;0,500;1,400&display=swap" />
@@ -300,6 +318,13 @@ footer .sig{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-style:ital
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 
+/* which platform people actually leave for — useful for deciding where to push */
+document.querySelectorAll('#everywhere a.row').forEach(function(a){
+  a.addEventListener('click', function(){
+    if(window.gtag) gtag('event','outbound_click',{platform:a.querySelector('.ttl').textContent.trim()});
+  });
+});
+
 /* ── one line that is both a horizon and a waveform ─────────────────────── */
 (function(){
   var cv = document.getElementById('lines'), ctx = cv.getContext('2d');
@@ -459,6 +484,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     .then(function(r){ return r.json(); })
     .then(function(d){
       if(d && d.success){
+        if(window.gtag) gtag('event','sign_up',{method:'site_form'});
         form.remove();
         if(fine) fine.remove();
         say('You are on the list. Talk soon.');
