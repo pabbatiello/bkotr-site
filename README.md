@@ -1,6 +1,6 @@
 # bkotr.com
 
-The website for **Blue Kid On The Rock** — dream-pop & electronica, Benevento, Italy.
+The website for **Blue Kid On The Rock**, dream-pop & electronica, Benevento, Italy.
 *the way the ocean waves*
 
 A single static page. No framework, no build step, no dependencies.
