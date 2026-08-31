@@ -60,18 +60,26 @@
 {"@context":"https://schema.org","@type":"WebSite","url":"https://bkotr.com/","name":"Blue Kid On The Rock","publisher":{"@id":"https://bkotr.com/#artist"}}
 </script>
 
-<!-- Google Analytics 4 — configured COOKIELESS (client_storage:'none').
-     No cookies are written, so the site needs no consent banner. Trade-off:
-     every visit counts as a new user, so "returning visitors" is not measured.
-     Remove client_storage to get returning-user data, but then a GDPR consent
-     banner becomes necessary for the UK/IE/IT audience. -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GG42FB02BE"></script>
+<!-- Google Analytics 4 — cookieless via Consent Mode.
+     analytics_storage:'denied' is the mechanism GA4 actually honours: it sends
+     pings with no cookies at all, so the site needs no consent banner for the
+     UK/IE/IT audience. (client_storage:'none' is a Universal Analytics leftover
+     that GA4 ignores — it was tried first and _ga cookies still appeared.)
+     Trade-off: visits are not stitched into returning users. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied'
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GG42FB02BE"></script>
+<script>
   gtag('js', new Date());
   gtag('config', 'G-GG42FB02BE', {
-    client_storage: 'none',
     anonymize_ip: true,
     allow_google_signals: false,
     allow_ad_personalization_signals: false
