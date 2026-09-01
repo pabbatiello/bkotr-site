@@ -220,6 +220,10 @@ footer{
 }
 footer .sig{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-style:italic;font-size:.95rem;color:var(--cream-2);text-transform:none;letter-spacing:0}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tooth{animation:none}}
+/* The grain blends (mix-blend-mode:overlay) over the animating canvas, forcing
+   a full-viewport re-composite every frame. On touch devices that cost buys a
+   texture invisible at .075 opacity on a phone, so drop it there. Desktop keeps it. */
+@media (hover:none) and (pointer:coarse){.tooth{display:none}}
 </style>
 </head>
 <body>
@@ -326,7 +330,14 @@ document.querySelectorAll('#everywhere a.row').forEach(function(a){
 (function(){
   var cv = document.getElementById('lines'), ctx = cv.getContext('2d');
   if(!ctx){ cv.style.display='none'; return; }
-  var dpr = Math.min(devicePixelRatio||1, 2), W=0, H=0;
+  // Phones pay the most for this canvas, so trim the two things that cost the
+  // most on a mobile GPU: the pixel-count (lower DPR cap) and the number of
+  // blurred strokes. Desktop keeps the full-fat look.
+  var isMobile = matchMedia('(hover:none) and (pointer:coarse)').matches;
+  var dpr = Math.min(devicePixelRatio||1, isMobile ? 1.5 : 2), W=0, H=0;
+  var glowMin = 0.38;   // only lines this "hot" get shadowBlur (imperceptible on the rest)
+  var minDT = isMobile ? (1000/30) : 0;  // cap the canvas at 30fps on mobile
+  var last = -1e9;
   var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function size(){
@@ -373,6 +384,8 @@ document.querySelectorAll('#everywhere a.row').forEach(function(a){
   function draw(now){
     requestAnimationFrame(draw);
     if(document.hidden) return;
+    if(now - last < minDT) return;   // 30fps cap on mobile; uncapped on desktop
+    last = now;
     var t = still ? 8 : (now-t0)/1000;
     off += (offT-off)*.07;
     ctx.clearRect(0,0,W,H);
@@ -398,10 +411,17 @@ document.querySelectorAll('#everywhere a.row').forEach(function(a){
       g.addColorStop(1,               ink([255,226,178], L.al*0.16, L.cool));
       ctx.strokeStyle = g;
       ctx.lineWidth = L.lw;
-      ctx.shadowBlur = 26*L.hot;
-      ctx.shadowColor = ink([255,224,166], 0.55*L.hot, L.cool);
-      ctx.stroke();
-      ctx.shadowBlur = 0;
+      // shadowBlur is the priciest op here; keep it only on the lines whose
+      // glow is actually visible. The faint background lines lose a sub-pixel
+      // blur nobody can see, and the mobile GPU stops re-blurring 6+ strokes.
+      if(L.hot >= glowMin){
+        ctx.shadowBlur = 26*L.hot;
+        ctx.shadowColor = ink([255,224,166], 0.55*L.hot, L.cool);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      } else {
+        ctx.stroke();
+      }
     }
     // the sun: anchored to the wordmark, setting into the horizon on scroll
     var k = Math.min(off,1);
